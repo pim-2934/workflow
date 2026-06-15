@@ -7,7 +7,7 @@ application code, no build system, and no test suite**.
 
 - `workflow/context.md` — `/context`: generates the agent-facing codebase map.
 - `workflow/intake.md` — `/intake`: interview → `docs/<id>/ticket.md`.
-- `workflow/ticket.md` — `/ticket`: drives a ticket Define→Plan→Build→Verify→Review→Ship.
+- `workflow/ticket.md` — `/ticket`: drives a ticket Define→Plan→Build→Verify→Review→Ship→Document.
 - `README.md` — overview + setup; `LICENSE` — MIT.
 
 ## Build / test / run

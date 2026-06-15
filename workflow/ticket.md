@@ -35,6 +35,7 @@ artifact path below.
 root:
 - spec: `docs/<id>/spec.md`
 - plan: `docs/<id>/plan.md` (includes the task breakdown inline)
+- diagram: `docs/<id>/diagram.md` (mermaid view of the change, written in Phase 6)
 
 Create the `docs/<id>/` directory if it does not exist. When a skill would otherwise
 write to its own default location (for example `/spec` and `/plan` write to the repo
@@ -174,12 +175,34 @@ NO-GO decision with a mandatory rollback plan.
   GO and even if asked mid-run. If the user wants those steps, point them to the
   relevant git and PR commands to run themselves.
 
+## Phase 6: Diagram the change (autonomous)
+
+Produce a mermaid diagram of the code this ticket created or changed, written to
+`docs/<id>/diagram.md` as one or two fenced ` ```mermaid ` blocks, each with a
+one-line caption. This is documentation of the working-tree result, so generate it on
+a GO; skip it on a NO-GO (there is nothing to document yet).
+
+- **Scope to the change.** Diagram the code added or modified in Phase 3, plus only the
+  immediate collaborators needed to make it legible. Do not map the whole codebase;
+  that is `/context`'s job, not this one.
+- **Pick the type that fits, do not force one.** A request or call flow → `sequenceDiagram`;
+  a data model or schema change → `classDiagram` or `erDiagram`; module or control-flow
+  wiring → `flowchart`; a state machine → `stateDiagram-v2`. If the change does not lend
+  itself to a useful diagram (for example a pure config or copy tweak), say so and skip
+  rather than draw a trivial one.
+- **Bounded.** One or two diagrams, not an exhaustive set. Favor the one view that best
+  explains the change to a future reader.
+- **Plain markdown only.** Emit the ` ```mermaid ` block as text; GitHub and most IDEs
+  render it natively. Do not call any renderer or validation tool, and do not add an
+  image dependency.
+
 ## Final summary
 
 Report the spec path (`docs/<id>/spec.md`), the plan and tasks completed, the tests
 added, the files changed in the working tree (left uncommitted for the user), the
 review findings by severity (including any security or performance deep dives and the
-separate simplification pass), and the ship decision with its rollback plan. Flag
+separate simplification pass), the diagram at `docs/<id>/diagram.md` (or a note that it
+was skipped), and the ship decision with its rollback plan. Flag
 anything you skipped or left for the user.
 
 ---

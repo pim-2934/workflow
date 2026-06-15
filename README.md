@@ -25,7 +25,7 @@ The commands compose into a single arc, from fuzzy idea to shipped change, with
 /context  →  CLAUDE.md + docs/context/      (one-time sweep, refreshed as the code changes)
                     │  read first to orient; load only the relevant slice
                     ▼
-/intake   →  docs/<id>/ticket.md  →  /ticket docs/<id>/ticket.md  →  spec → plan → build → review → ship
+/intake   →  docs/<id>/ticket.md  →  /ticket docs/<id>/ticket.md  →  spec → plan → build → review → ship → diagram
 ```
 
 `/context` exists because running the pipeline against a large or complex codebase gets
@@ -60,6 +60,7 @@ off disk, so context is carried through files rather than the conversation:
 | 3. Build and verify | `incremental-implementation` + `test-driven-development` (`/build auto`) | code + tests (working tree) | autonomous |
 | 4. Review | `code-review-and-quality` (`/review`) plus deep-dive escalation | five-axis findings | autonomous |
 | 5. Ship | `shipping-and-launch` (`/ship`) | GO/NO-GO + rollback plan | autonomous |
+| 6. Document | none (plain mermaid) | `docs/<id>/diagram.md` (on GO) | autonomous |
 
 Conditional fallbacks (they warn rather than block, and fire only on a relevant
 branch):
